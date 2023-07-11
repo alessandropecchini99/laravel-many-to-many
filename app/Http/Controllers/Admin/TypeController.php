@@ -41,7 +41,7 @@ class TypeController extends Controller
         $request->validate(
             [
                 'name'          => 'required|string|max:20',
-                'description'   => 'required|string|max:200',
+                'description'   => 'required|string',
             ]
         );
 
@@ -93,7 +93,7 @@ class TypeController extends Controller
         $request->validate(
             [
                 'name'          => 'required|string|max:20',
-                'description'   => 'required|string|max:200',
+                'description'   => 'required|string',
             ]
         );
 

@@ -40,7 +40,6 @@
                     id="description" 
                     rows="3" 
                     name="description"
-                    maxlength="200"
                 >{{ old('description') }}</textarea>
                 @error('description')
                     <div class="invalid-feedback">

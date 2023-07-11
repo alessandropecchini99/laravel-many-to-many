@@ -7,7 +7,7 @@
     <div class="container">
 
         <h1>Type: {{ $type->name }}</h1>
-        <h2>Description: {{ $type->description }}</h2>
+        <h6>{{ $type->description }}</h6>
 
         <hr>
 
