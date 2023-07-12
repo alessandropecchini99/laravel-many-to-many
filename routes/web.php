@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Admin\TechnologyController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Guest\PageController as GuestPageController;
 
@@ -32,6 +33,8 @@ Route::middleware(['auth', 'verified'])
         Route::resource('posts', PostController::class);
         // ------- TYPES ROUTES ----------
         Route::resource('types', TypeController::class);
+        // ------- TECHNOLOGIES ROUTES ----------
+        Route::resource('technologies', TechnologyController::class);
     });
 
 Route::middleware('auth')

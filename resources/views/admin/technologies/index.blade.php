@@ -6,16 +6,39 @@
 
     <div class="index container">
     
-        <h1>TYPES</h1>
+        <h1>TECHNOLOGIES</h1>
 
             {{-- conferma delete --}}
             @if (session('delete_success'))
-                @php $type = session('delete_success') @endphp
+                @php $technology = session('delete_success') @endphp
                 <div class="alert alert-danger m-0 mb-3">
-                    "{{ $type->name }}" Permanently Deleted
+                    "{{ $technology->name }}" Permanently Deleted
                 </div>
             @endif
 
+            {{-- conferma delete --}}
+            {{-- @if (session('softdelete_success'))
+                @php $technology = session('softdelete_success') @endphp
+                <div class="alert alert-danger m-0 mb-3">
+                    "{{ $technology->title }}" Soft Deleted
+                    <form
+                        action="{{ route("admin.technologies.restore", ['technology' => $technology]) }}"
+                        method="technology"
+                        class="d-inline-block restore-btn"
+                    >
+                        @csrf
+                        <button class="btn btn-warning">Restore</button>
+                    </form>
+                </div>
+            @endif --}}
+
+            {{-- conferma restore --}}
+            {{-- @if (session('restore_success'))
+                @php $technology = session('restore_success') @endphp
+                <div class="alert alert-success">
+                    "{{ $technology->title }}" Restored
+                </div>
+            @endif --}}
 
         <table class="table table-striped">
             <thead>
@@ -27,18 +50,18 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($types as $type)
+                @foreach($technologies as $technology)
                     <tr>
-                        <th scope="row">{{ $type->id }}</th>
-                        <td>{{ $type->name }}</td>
-                        <td>{{ count($type->posts) }}</td>
+                        <th scope="row">{{ $technology->id }}</th>
+                        <td>{{ $technology->name }}</td>
+                        <td>{{ count($technology->posts) }}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('admin.types.show', ['type' => $type->id]) }}">View</a>
-                            <a class="btn btn-warning" href="{{ route('admin.types.edit', ['type' => $type->id]) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('admin.technologies.show', ['technology' => $technology->id]) }}">View</a>
+                            <a class="btn btn-warning" href="{{ route('admin.technologies.edit', ['technology' => $technology->id]) }}">Edit</a>
                             <!-- Button trigger modal -->
                             <button 
                                 type="button" class="btn btn-danger myModal" data-bs-toggle="modal" data-bs-target="#myInput" 
-                                data-id="{{ $type->id }}"
+                                data-id="{{ $technology->id }}"
                             >
                                 Delete
                             </button>
@@ -50,13 +73,19 @@
 
         {{-- Paginator --}}
         <div class="paginator">
-            {{ $types->links() }}
+            {{ $technologies->links() }}
         </div>
 
         {{-- other buttons --}}
         <div>
-            {{-- Add New type --}}
-            <a class="btn btn-primary" href="{{ route('admin.types.create') }}">Add new type</a>
+            {{-- Add New technology --}}
+            <a class="btn btn-primary" href="{{ route('admin.technologies.create') }}">Add new Technology</a>
+
+            {{-- Trash Can --}}
+            {{-- <a class="btn btn-warning" href="{{ route('admin.technologies.trashed') }}">
+                Trash Can
+                <i class="bi bi-trash3"></i>
+            </a> --}}
         </div>
 
         <!-- Modal -->
@@ -75,8 +104,8 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
 
                         <form
-                            action="{{ route("admin.types.destroy", ['type' => '***']) }}"
-                            {{-- action="http://localhost:8000/admin/types/0/destroy" --}}
+                            action="{{ route("admin.technologies.destroy", ['technology' => '***']) }}"
+                            {{-- action="http://localhost:8000/admin/technologies/0/destroy" --}}
                             method="POST"
                             class="d-inline-block"
                             id="myForm"

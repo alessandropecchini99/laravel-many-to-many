@@ -50,6 +50,7 @@ class PostController extends Controller
         // salvare i dati in db se validi
         $newPost = new Post();
         $newPost->title         = $data['title'];
+        $newPost->slug          = Post::slugger($data['title']);
         $newPost->type_id       = $data['type_id'];
         $newPost->content       = $data['content'];
         $newPost->url_image     = $data['url_image'];
