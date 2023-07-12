@@ -105,12 +105,12 @@ class TypeController extends Controller
         return view('admin.types.trashed', compact('trashedTypes'));
     }
 
-    public function harddelete(Type $types, $id)
+    public function harddelete($id)
     {
         $type = Type::withTrashed()->find($id);
 
         //dissociare tutti i tag dal post
-        foreach ($types->posts as $post) {
+        foreach ($type->posts as $post) {
             $post->type_id = 1;
             $post->update();
         }

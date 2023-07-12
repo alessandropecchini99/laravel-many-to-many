@@ -69,7 +69,7 @@
 
                         <form
                             action="{{ route("admin.types.harddelete", ['type' => '***']) }}"
-                            method="post"
+                            method="POST"
                             class="d-inline-block"
                             id="myForm"
                         >

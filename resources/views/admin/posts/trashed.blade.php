@@ -73,7 +73,7 @@
                         <form
                             action="{{ route("admin.posts.harddelete", ['post' => '***']) }}"
                             {{-- action="http://localhost:8000/admin/posts/0/harddelete" --}}
-                            method="post"
+                            method="POST"
                             class="d-inline-block"
                             id="myForm"
                         >
