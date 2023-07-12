@@ -7,12 +7,16 @@
         @vite('resources/js/app.js')
     </head>
     <body>
-        @include('admin.includes.header')
+        <header>
+            @include('admin.includes.header')
+        </header>
 
         <main>
             @yield('main')
         </main>
-
-        @include('admin.includes.footer')
+        
+        <footer>
+            @include('admin.includes.footer')
+        </footer>
     </body>
 </html>

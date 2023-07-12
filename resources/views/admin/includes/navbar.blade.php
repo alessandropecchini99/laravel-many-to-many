@@ -2,9 +2,9 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
 
-    <div class="container-fluid">
+    <div class="container">
 
-        <a class="navbar-brand" href="{{ route('guest.home') }}">Boolpress</a>
+        <a class="navbar-brand myNav" href="{{ route('guest.home') }}"><img src="/img/logo-no-background.png" alt="logo" class="w-100"></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -40,6 +40,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('admin.types.index') }}">Index</a></li>
                         <li><a class="dropdown-item" href="{{ route('admin.types.create') }}">Add Type</a></li>
+                        <li><a class="dropdown-item" href="{{ route('admin.types.trashed') }}">Trash Can</a></li>
                         {{-- <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li> --}}
                     </ul>
@@ -52,6 +53,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('admin.technologies.index') }}">Index</a></li>
                         <li><a class="dropdown-item" href="{{ route('admin.technologies.create') }}">Add Technologies</a></li>
+                        <li><a class="dropdown-item" href="{{ route('admin.technologies.trashed') }}">Trash Can</a></li>
                         {{-- <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li> --}}
                     </ul>
@@ -65,7 +67,7 @@
             </form> --}}
 
             <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item dropstart">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ $user->name }}
                     </a>

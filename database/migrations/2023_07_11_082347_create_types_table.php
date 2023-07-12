@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 20);
             $table->text('description');
+            $table->softDeletes();
         });
     }
 

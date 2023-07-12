@@ -18,7 +18,7 @@
 
 @extends('admin.layouts.base')
 
-@section('title', 'Register')
+@section('title', 'Dashboard')
 
 @section('main') 
 

@@ -45,5 +45,7 @@ class Post extends Model
             //incremento il contatore
             $i++;
         }
+
+        return $slug;
     }
 }

@@ -23,7 +23,7 @@
                     "{{ $post->title }}" Soft Deleted
                     <form
                         action="{{ route("admin.posts.restore", ['post' => $post]) }}"
-                        method="post"
+                        method="POST"
                         class="d-inline-block restore-btn"
                     >
                         @csrf
