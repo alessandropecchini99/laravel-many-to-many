@@ -7,6 +7,7 @@
     <div class="container">
         <h1>{{ $post->title }}</h1>
         <h3>Type: {{ $post->type->name }}</h3>
+        <h4>Technologies: {{ implode(', ' , $post->technologies->pluck('name')->all()) }}</h4>
         <img src="{{ $post->url_image }}" alt="{{ $post->title }}">
         <p>{{ $post->content }}</p>
 

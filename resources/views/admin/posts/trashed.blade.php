@@ -4,7 +4,7 @@
 
 @section('main') 
 
-    <div class="index">
+    <div class="trashed container">
 
         @if (count($trashedPosts) === 0)
             <h1>Nothing Deleted</h1>

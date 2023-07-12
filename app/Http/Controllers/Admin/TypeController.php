@@ -116,7 +116,12 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
+        //dissociare tutti i tag dal post
+        $type->posts()->detach();
+
+        //elimino
         $type->delete();
+
         return to_route('admin.types.index')->with('delete_success', $type);
     }
 }

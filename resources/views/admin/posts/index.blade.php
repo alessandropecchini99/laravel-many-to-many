@@ -46,6 +46,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Title</th>
                     <th scope="col">Type</th>
+                    <th scope="col">Tech</th>
                     <th scope="col">Image</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -56,6 +57,7 @@
                         <th scope="row">{{ $post->id }}</th>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->type->name }}</td>
+                        <td>{{ implode(', ' , $post->technologies->pluck('name')->all()) }}</td>
                         <td>{{ $post->url_image }}</td>
                         <td>
                             <a class="btn btn-primary" href="{{ route('admin.posts.show', ['post' => $post->id]) }}">View</a>
