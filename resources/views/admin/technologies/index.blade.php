@@ -56,11 +56,11 @@
                         <td>{{ $technology->name }}</td>
                         <td>{{ count($technology->posts) }}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('admin.technologies.show', ['technology' => $technology->id]) }}">View</a>
-                            <a class="btn btn-warning" href="{{ route('admin.technologies.edit', ['technology' => $technology->id]) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('admin.technologies.show', ['technology' => $technology]) }}">View</a>
+                            <a class="btn btn-warning" href="{{ route('admin.technologies.edit', ['technology' => $technology]) }}">Edit</a>
                             <!-- Button soft delete -->
                             <form
-                                action="{{ route('admin.technologies.destroy', ['technology' => $technology->id]) }}"
+                                action="{{ route('admin.technologies.destroy', ['technology' => $technology]) }}"
                                 method="POST"
                                 class="d-inline-block"
                             >

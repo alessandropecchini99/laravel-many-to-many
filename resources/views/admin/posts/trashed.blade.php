@@ -38,7 +38,11 @@
                                 </form>
 
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-danger myModal" data-bs-toggle="modal" data-bs-target="#myInput" data-id="{{ $post->id }}">
+                                <button 
+                                    type="button" class="btn btn-danger myModal" 
+                                    data-bs-toggle="modal" data-bs-target="#myInput" 
+                                    data-id="{{ $post->slug }}"
+                                >
                                     <i class="bi bi-trash3"></i>
                             </td>
                         </tr>

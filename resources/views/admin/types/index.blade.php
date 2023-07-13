@@ -56,11 +56,11 @@
                         <td>{{ $type->name }}</td>
                         <td>{{ count($type->posts) }}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('admin.types.show', ['type' => $type->id]) }}">View</a>
-                            <a class="btn btn-warning" href="{{ route('admin.types.edit', ['type' => $type->id]) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('admin.types.show', ['type' => $type]) }}">View</a>
+                            <a class="btn btn-warning" href="{{ route('admin.types.edit', ['type' => $type]) }}">Edit</a>
                             <!-- Button soft delete -->
                             <form
-                                action="{{ route('admin.types.destroy', ['type' => $type->id]) }}"
+                                action="{{ route('admin.types.destroy', ['type' => $type]) }}"
                                 method="post"
                                 class="d-inline-block"
                             >

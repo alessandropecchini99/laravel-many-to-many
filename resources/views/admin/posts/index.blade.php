@@ -56,7 +56,7 @@
                     <tr>
                         <th scope="row">{{ $post->id }}</th>
                         <td>{{ $post->title }}</td>
-                        <td>{{ $post->type->name }}</td>
+                        <td><a href="{{ route('admin.types.show', ['type' => $post->type]) }}">{{ $post->type->name }}</a></td>
                         {{-- <td>{{ implode(', ' , $post->technologies->pluck('name')->all()) }}</td> --}}
                         <td>
                             @foreach ($post->technologies as $technology)
@@ -65,11 +65,11 @@
                         </td>
                         <td>{{ $post->url_image }}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('admin.posts.show', ['post' => $post->id]) }}">View</a>
-                            <a class="btn btn-warning" href="{{ route('admin.posts.edit', ['post' => $post->id]) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('admin.posts.show', ['post' => $post]) }}">View</a>
+                            <a class="btn btn-warning" href="{{ route('admin.posts.edit', ['post' => $post]) }}">Edit</a>
                             <!-- Button soft delete -->
                             <form
-                                action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}"
+                                action="{{ route('admin.posts.destroy', ['post' => $post]) }}"
                                 method="post"
                                 class="d-inline-block"
                             >

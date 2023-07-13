@@ -64,22 +64,28 @@ class PostController extends Controller
     }
 
 
-    public function show(Post $post)
+    public function show($slug)
     {
+        $post = Post::where('slug', $slug)->firstOrFail();
+
         return view('admin.posts.show', compact('post'));
     }
 
 
-    public function edit(Post $post)
+    public function edit($slug)
     {
+        $post = Post::where('slug', $slug)->firstOrFail();
+
         $types = Type::all();
         $technologies = Technology::all();
         return view('admin.posts.edit', compact('post', 'types', 'technologies'));
     }
 
 
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $slug)
     {
+        $post = Post::where('slug', $slug)->firstOrFail();
+
         // validare i dati del form
         $request->validate(
             [
@@ -109,8 +115,10 @@ class PostController extends Controller
     }
 
 
-    public function destroy(Post $post)
+    public function destroy($slug)
     {
+        $post = Post::where('slug', $slug)->firstOrFail();
+
         $post->delete(); // se settiamo in model e in migrate il softdelete, cambia in automatico
 
         return to_route('admin.posts.index')->with('softdelete_success', $post);
@@ -138,9 +146,9 @@ class PostController extends Controller
         // ]);
     }
 
-    public function harddelete($id)
+    public function harddelete($slug)
     {
-        $post = Post::withTrashed()->find($id);
+        $post = Post::withTrashed()->where('slug', $slug)->firstOrFail();
 
         //dissociare tutti i tag dal post
         $post->technologies()->detach();
