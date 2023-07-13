@@ -98,12 +98,14 @@ class TypeController extends Controller
         return to_route('admin.types.index')->with('restore_success', $type);
     }
 
+
     public function trashed()
     {
         $trashedTypes = Type::onlyTrashed()->paginate(5); // SELECT * FROM 'posts'
 
         return view('admin.types.trashed', compact('trashedTypes'));
     }
+
 
     public function harddelete($id)
     {

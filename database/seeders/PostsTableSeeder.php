@@ -23,6 +23,7 @@ class PostsTableSeeder extends Seeder
 
         // pluck scompatta l'array scelto per poter associare i valori
         $technologies = Technology::all()->pluck('id');
+        $technologies->shift();
 
         for ($i = 0; $i < 50; $i++) {
             $title = $faker->words(rand(2, 7), true);   // Un bel Titolo

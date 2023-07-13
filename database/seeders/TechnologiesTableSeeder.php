@@ -17,6 +17,9 @@ class TechnologiesTableSeeder extends Seeder
     {
         $technologies = [
             [
+                'name' => 'uncategorized'
+            ],
+            [
                 'name' => 'html'
             ],
             [
