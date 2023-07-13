@@ -103,19 +103,27 @@ class TechnologyController extends Controller
 
     public function harddelete($id)
     {
+        // trovo la technology da eliminare
         $technology = Technology::withTrashed()->find($id);
+
+        // technology_id in cui mandare i post
         $defaultTech = Technology::find(1);
+
+        // seleziono i post da spostare nel nuovo technology_id
         $postsId = $technology->posts->pluck('id')->all();
 
+        //dissociare tutti i tag dal technology
         $technology->posts()->detach();
 
+        // associo i post al nuovo technology_id
         foreach ($postsId as $post) {
             $defaultTech->posts()->attach($post);
         }
 
-        //dissociare tutti i tag dal technology
+        // ALTERNATIVA: eliminare direttamente la technology
         // $technology->posts()->detach();
 
+        // ora che la technology non è collegata a dei post, posso eliminarla
         $technology->forceDelete();
 
         return to_route('admin.technologies.index')->with('harddelete_success', $technology);
