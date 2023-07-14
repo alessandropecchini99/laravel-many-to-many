@@ -22,27 +22,15 @@ class TypesTableSeeder extends Seeder
                 'description' => $faker->words(rand(30, 80), true),
             ],
             [
-                'name' => 'politica',
+                'name' => 'Front-End',
                 'description' => $faker->words(rand(30, 80), true),
             ],
             [
-                'name' => 'attualità',
+                'name' => 'Back-End',
                 'description' => $faker->words(rand(30, 80), true),
             ],
             [
-                'name' => 'informatica',
-                'description' => $faker->words(rand(30, 80), true),
-            ],
-            [
-                'name' => 'letteratura',
-                'description' => $faker->words(rand(30, 80), true),
-            ],
-            [
-                'name' => 'cucina',
-                'description' => $faker->words(rand(30, 80), true),
-            ],
-            [
-                'name' => 'videogiochi',
+                'name' => 'Full-Stack',
                 'description' => $faker->words(rand(30, 80), true),
             ],
         ];

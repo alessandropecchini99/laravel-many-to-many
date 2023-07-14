@@ -12,6 +12,7 @@
             class="create-form"
             method="POST"
             action="{{ route('admin.posts.store') }}"
+            enctype="multipart/form-data"
         >
             @csrf
 
@@ -29,6 +30,36 @@
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>  
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="url_image" class="form-label">Image</label>
+                <input 
+                    type="text" 
+                    class="form-control 
+                    @error('url_image') is-invalid @enderror" 
+                    id="url_image" 
+                    name="url_image" 
+                    value="{{ old('url_image') }}"
+                >
+                @error('url_image')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>  
+                @enderror
+            </div>
+
+            <div class="input-group mb-3">
+                <input type="file" class="form-control
+                    @error('upImage') is-invalid @enderror"  
+                    id="upImage" name="upImage"
+                    accept="image/*"
+                >
+                @error('upImage')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
                 @enderror
             </div>
 
@@ -68,11 +99,11 @@
                     </div>
                 @endforeach
 
-                {{-- @error('technologies')
+                @error('technologies')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>  
-                @enderror --}}
+                @enderror
             </div>
 
             <div class="mb-3">
@@ -89,26 +120,7 @@
                         {{ $message }}
                     </div>  
                 @enderror
-            </div>
-
-            <div class="mb-3">
-                <label for="url_image" class="form-label">Image</label>
-                <input 
-                    type="text" 
-                    class="form-control 
-                    @error('url_image') is-invalid @enderror" 
-                    id="url_image" 
-                    name="url_image" 
-                    value="{{ old('url_image') }}"
-                >
-                @error('url_image')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>  
-                @enderror
-            </div>
-
-            
+            </div>            
 
             <div class="create-button">
                 <a class="btn btn-secondary" href="/admin/posts">Back</a>

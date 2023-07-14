@@ -7,6 +7,7 @@ use App\Models\Type;
 use App\Models\Technology;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -34,10 +35,11 @@ class PostController extends Controller
             [
                 'title'         => 'required|string|min:5|max:100',
                 'type_id'       => 'required|integer|exists:types,id',
-                'url_image'     => 'required|url|max:200',
+                'url_image'     => 'nullable|url|max:200',
+                'upImage'       => 'nullable|image|max:1024',
                 'content'       => 'required|string',
             ],
-            // custom error message
+            // custom error message 
             // [
             //     'title.required'    => 'Title required!',
             //     'title.min'         => 'Title needs minimum 5 letter!',
@@ -47,13 +49,18 @@ class PostController extends Controller
         // prendo i dati dalla create page
         $data = $request->all();
 
-        // salvare i dati in db se validi
+        // salvare l'upImage nella cartella degli uploads
+        // prendere il percorso dell'immagine appena salvata
+        $imagePath = Storage::put('uploads', $data['upImage']);
+
+        // salvare i dati in db se validi insieme al percorso delle immagini
         $newPost = new Post();
         $newPost->title         = $data['title'];
         $newPost->slug          = Post::slugger($data['title']);
         $newPost->type_id       = $data['type_id'];
         $newPost->content       = $data['content'];
         $newPost->url_image     = $data['url_image'];
+        $newPost->upImage       = $imagePath;
         $newPost->save();
 
         // associare le technologies
@@ -92,13 +99,27 @@ class PostController extends Controller
                 'title'             => 'required|string|min:5|max:100',
                 'type_id'           => 'required|integer|exists:types,id',
                 'content'           => 'required|string',
-                'url_image'         => 'required|url|max:200',
+                'url_image'         => 'nullable|url|max:200',
+                'upImage'           => 'nullable|image|max:1024',
                 'technologies'      => 'nullable|array',
                 'technologies.*'    => 'integer|exists:technologies,id',
             ]
         );
 
         $data = $request->all();
+
+        if ($data['upImage']) {
+            // salvare l'eventuale nuova upImage
+            $imagePath = Storage::put('uploads', $data['upImage']);
+
+            // in caso di nuova upImage, eliminare l'upImage precedente
+            if ($post->upImage) {
+                Storage::delete($post->upImage);
+            }
+
+            // in caso di nuova upImage, aggiorno il valore in colonna
+            $post->upImage = $imagePath;
+        }
 
         // aggiornare i dati nel db se validi
         $post->title        = $data['title'];
@@ -149,6 +170,10 @@ class PostController extends Controller
     public function harddelete($slug)
     {
         $post = Post::withTrashed()->where('slug', $slug)->firstOrFail();
+
+        if ($post->upImage) {
+            Storage::delete($post->upImage);
+        }
 
         //dissociare tutti i tag dal post
         $post->technologies()->detach();

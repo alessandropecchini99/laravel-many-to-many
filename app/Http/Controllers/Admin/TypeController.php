@@ -38,6 +38,7 @@ class TypeController extends Controller
         // salvare i dati in db se validi
         $newType = new Type();
         $newType->name          = $data['name'];
+        // $newType->slug          = Type::slugger($data['name']);
         $newType->description   = $data['description'];
         $newType->save();
 

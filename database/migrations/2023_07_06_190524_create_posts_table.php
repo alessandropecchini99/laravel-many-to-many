@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('title', 100);
             $table->string('slug', 100)->unique();
 
-            $table->string('url_image', 200);
+            $table->string('url_image', 200)->nullable();
+            $table->string('upImage', 200)->nullable();
             $table->text('content');
 
             $table->softDeletes();
